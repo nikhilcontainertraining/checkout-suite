@@ -5,7 +5,6 @@ services:
     image: mysql
     stdin_open: true
     tty: true
-    restart: on-failure
     environment:
       MYSQL_ROOT_USER: root
       MYSQL_ROOT_PASSWORD: Mig5@mig5
@@ -15,7 +14,8 @@ services:
       context: ./payment-data-services
       dockerfile: Dockerfile
     working_dir: /payment-data-services
-    image: payment-data-services:v1
+    image: nhiremathir/payment-data-services:v1
+    restart: on-failure
     ports:
       - 8080:8080
     depends_on:
@@ -25,7 +25,7 @@ services:
       context: ./checkout-orchestrator
       dockerfile: Dockerfile
     working_dir: /checkout-orchestrator
-    image: checkout-orchestrator:v1
+    image: nhiremathir/checkout-orchestrator:v1
     ports:
       - 8081:8081
     depends_on:
