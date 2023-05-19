@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  mysql-con:
+    container_name: mysql-con
+    image: mysql
+    stdin_open: true
+    tty: true
+    restart: on-failure
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: Mig5@mig5
+      MYSQL_DATABASE: card_repository
+  payment-data-services:
+    build:
+      context: ./payment-data-services
+      dockerfile: Dockerfile
+    working_dir: /payment-data-services
+    image: payment-data-services:v1
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql-con
+  checkout-orchestrator:
+    build:
+      context: ./checkout-orchestrator
+      dockerfile: Dockerfile
+    working_dir: /checkout-orchestrator
+    image: checkout-orchestrator:v1
+    ports:
+      - 8081:8081
+    depends_on:
+      - payment-data-services

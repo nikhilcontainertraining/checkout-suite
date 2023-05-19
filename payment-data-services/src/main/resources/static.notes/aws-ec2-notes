@@ -1,0 +1,43 @@
+Deploying Docker on AWS EC2
+----------------------------------------
+Spin an EC2 instance
+
+Rely on default VPC
+
+Go the default security group and add HTTP incoming traffic so that app can accept postman requests
+    ex: localhost:8080/cards --> http://ec2-52-14-147-93.us-east-2.compute.amazonaws.com/cards
+
+Create new keypair for new ec2 instance
+
+SSH into new instance following ec2 instructions
+
+update yum and install docker
+    sudo yum update -y
+    sudo yum -y install docker
+
+Start docker
+    sudo service docker start
+
+enable ec2-user to execute docker commands without sudo
+    sudo usermod -a -G docker ec2-user
+
+create docker sym link
+    sudo systemctl enable docker
+
+
+----------------------------------------
+Steps to install docker in Ec2 instance:
+----------------------------------------
+sudo yum update -y
+sudo yum -y install docker
+
+sudo service docker start
+sudo usermod -a -G docker ec2-user
+
+Once you logged back in, run this command:
+
+sudo systemctl enable docker
+
+docker version
+
+----------------------------------------
