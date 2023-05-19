@@ -1,5 +1,5 @@
 package com.nikhil.containers.paymentdataservices.service;
-import com.nikhil.containers.paymentdataservices.model.Card;
+import com.nikhil.containers.paymentdataservices.repository.model.Card;
 import com.nikhil.containers.paymentdataservices.model.GetCardsResponse;
 //import com.nikhil.containers.paymentdataservices.repository.CardRepository;
 import com.nikhil.containers.paymentdataservices.repository.CardRepository;
@@ -11,10 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class CardsHandler {
@@ -24,12 +21,17 @@ public class CardsHandler {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Autowired
+    @Autowired(required = false)
     private CardRepository cardRepository;
 
     public List<Card> getCardsFromRepository() {
         log.info("Request to getCardsFromRepository STARTED");
-        List<Card> cards = cardRepository.findAll();
+        List<Card> cards = new ArrayList<>();
+        try {
+            cards = cardRepository.findAll();
+        } catch (Exception e) {
+            log.error("ERROR: DB : Failed to fetch cards");
+        }
         log.info("Request to getCardsFromRepository COMPLETE");
         return cards;
     }
@@ -53,7 +55,11 @@ public class CardsHandler {
         List<Card> cards = Objects.requireNonNull(
                 getCardsResponse.getBody() ).getData();
 
-        cards.forEach(card -> cardRepository.save(card));
+        try {
+            cards.forEach(card -> cardRepository.save(card));
+        } catch (Exception e) {
+            log.error("ERROR: DB : Failed to save cards");
+        }
 
         log.info("Request to getCards COMPLETE");
 

@@ -1,7 +1,7 @@
 package com.nikhil.containers.paymentdataservices.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Data;
+import com.nikhil.containers.paymentdataservices.repository.model.Card;
 
 import java.util.List;
 import java.util.Objects;

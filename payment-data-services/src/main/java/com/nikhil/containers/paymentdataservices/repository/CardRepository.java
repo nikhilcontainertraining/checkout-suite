@@ -1,6 +1,6 @@
 package com.nikhil.containers.paymentdataservices.repository;
 
-import com.nikhil.containers.paymentdataservices.model.Card;
+import com.nikhil.containers.paymentdataservices.repository.model.Card;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
 package com.nikhil.containers.paymentdataservices.api;
 
-import com.nikhil.containers.paymentdataservices.model.Card;
+import com.nikhil.containers.paymentdataservices.repository.model.Card;
 import com.nikhil.containers.paymentdataservices.service.CardsHandler;
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
