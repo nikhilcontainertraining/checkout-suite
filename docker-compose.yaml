@@ -10,16 +10,19 @@ services:
       MYSQL_ROOT_PASSWORD: Mig5@mig5
       MYSQL_DATABASE: card_repository
   payment-data-services:
+    depends_on:
+      - mysql-con
     build:
       context: ./payment-data-services
       dockerfile: Dockerfile
     working_dir: /payment-data-services
     image: nhiremathir/payment-data-services:v1
-    restart: on-failure
+    deploy:
+      restart_policy:
+        max_attempts: 3
+        condition: on-failure
     ports:
       - 8080:8080
-    depends_on:
-      - mysql-con
   checkout-orchestrator:
     build:
       context: ./checkout-orchestrator
