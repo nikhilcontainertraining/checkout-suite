@@ -1,0 +1,28 @@
+Manually deploying multi container
+-----------------------------------
+
+AWS security group
+    sgr-00b80887c942a897c	IPv4	All traffic	All	All	0.0.0.0/0
+    sgr-0cc158656420bd3ba	IPv4	SSH	TCP	22	0.0.0.0/0
+
+--------------------
+
+docker network create manual-multicontainer
+
+--------------------
+docker run -it --network manual-multicontainer --name mysql-con -e MYSQL_ROOT_PASSWORD=Mig5@mig5 -u root -d mysql
+
+    docker exec -it mysql-con bash
+
+        mysql -u root -p
+
+--------------------
+docker run --network manual-multicontainer -p 8080:8080 -d --name payment-data-services nhiremathir/payment-data-services:v1
+
+    connect with http url
+    NOT https
+--------------------
+
+docker run --network manual-multicontainer -p 8081:8081 -d --name checkout-orchestrator nhiremathir/checkout-orchestrator:v1
+
+-----------------------------------
