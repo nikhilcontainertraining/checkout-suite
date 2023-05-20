@@ -19,7 +19,7 @@ services:
     image: nhiremathir/payment-data-services:v1
     deploy:
       restart_policy:
-        max_attempts: 3
+        max_attempts: 2
         condition: on-failure
     ports:
       - 8080:8080

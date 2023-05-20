@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
 
@@ -29,7 +30,8 @@ public class CardsHandler {
 
     public List<Card> getCardsFromRepository() {
         log.info("Request to getCardsFromRepository STARTED");
-        List<Card> cards = cardRepository.findAll();
+        List<Card> cards = new ArrayList<>();
+                //cardRepository.findAll();
         log.info("Request to getCardsFromRepository COMPLETE");
         return cards;
     }
@@ -53,7 +55,7 @@ public class CardsHandler {
         List<Card> cards = Objects.requireNonNull(
                 getCardsResponse.getBody() ).getData();
 
-        cards.forEach(card -> cardRepository.save(card));
+        //cards.forEach(card -> cardRepository.save(card));
 
         log.info("Request to getCards COMPLETE");
 

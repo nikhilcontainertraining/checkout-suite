@@ -2,8 +2,11 @@ Manually deploying multi container
 -----------------------------------
 
 AWS security group
-    sgr-00b80887c942a897c	IPv4	All traffic	All	All	0.0.0.0/0
-    sgr-0cc158656420bd3ba	IPv4	SSH	TCP	22	0.0.0.0/0
+    EC2 ports to open via security groups
+
+    – sgr-0400810092c746833	IPv4	SSH	TCP	22	0.0.0.0/0	–
+    – sgr-0b744fc263ad029f5	IPv4	All traffic	All	All	0.0.0.0/0	–
+
 
 --------------------
 
