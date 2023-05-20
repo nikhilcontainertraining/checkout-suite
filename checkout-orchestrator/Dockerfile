@@ -1,4 +1,4 @@
-FROM gradle
+FROM openjdk:11-jdk-oracle
 
 WORKDIR /checkout-orchestrator
 

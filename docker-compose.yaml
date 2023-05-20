@@ -16,7 +16,7 @@ services:
       context: ./payment-data-services
       dockerfile: Dockerfile
     working_dir: /payment-data-services
-    image: nhiremathir/payment-data-services:v1
+    image: nhiremathir/payment-data-services:v3
     deploy:
       restart_policy:
         max_attempts: 3
@@ -28,7 +28,7 @@ services:
       context: ./checkout-orchestrator
       dockerfile: Dockerfile
     working_dir: /checkout-orchestrator
-    image: nhiremathir/checkout-orchestrator:v1
+    image: nhiremathir/checkout-orchestrator:v3
     ports:
       - 8081:8081
     depends_on:
