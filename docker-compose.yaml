@@ -23,6 +23,8 @@ services:
         condition: on-failure
     ports:
       - 8080:8080
+    env_file:
+      - ./payment-data-services/db.env
   checkout-orchestrator:
     build:
       context: ./checkout-orchestrator
