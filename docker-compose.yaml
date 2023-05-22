@@ -9,9 +9,13 @@ services:
       MYSQL_ROOT_USER: root
       MYSQL_ROOT_PASSWORD: Mig5@mig5
       MYSQL_DATABASE: card_repository
+    healthcheck:
+      test: ["CMD","mysqladmin","ping","-h","localhost"]
   payment-data-services:
+    container_name: payment-data-services
     depends_on:
-      - checkout-orchestrator
+      checkout-orchestrator:
+        condition: service_healthy
     build:
       context: ./payment-data-services
       dockerfile: Dockerfile
@@ -27,6 +31,7 @@ services:
       - payment-data-services/db.env
 #      - ./payment-data-services/db.env_file
   checkout-orchestrator:
+    container_name: checkout-orchestrator
     build:
       context: ./checkout-orchestrator
       dockerfile: Dockerfile
@@ -37,7 +42,10 @@ services:
     ports:
       - 8081:8081
     depends_on:
-      - mysql-con
+      mysql-con:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/test"]
 
 volumes:
   crypt:
