@@ -11,7 +11,7 @@ services:
       MYSQL_DATABASE: card_repository
   payment-data-services:
     depends_on:
-      - mysql-con
+      - checkout-orchestrator
     build:
       context: ./payment-data-services
       dockerfile: Dockerfile
@@ -37,7 +37,7 @@ services:
     ports:
       - 8081:8081
     depends_on:
-      - payment-data-services
+      - mysql-con
 
 volumes:
   crypt:
