@@ -11,11 +11,19 @@ services:
       MYSQL_DATABASE: card_repository
     healthcheck:
       test: ["CMD","mysqladmin","ping","-h","localhost"]
+    networks:
+      checkout-suite-manual:
+        aliases:
+          - mysql-con
   payment-data-services:
-    container_name: payment-data-services
     depends_on:
-      checkout-orchestrator:
+      mysql-con:
         condition: service_healthy
+    container_name: payment-data-services
+    networks:
+      checkout-suite-manual:
+        aliases:
+          - payment-data-services
     build:
       context: ./payment-data-services
       dockerfile: Dockerfile
@@ -27,25 +35,37 @@ services:
         condition: on-failure
     ports:
       - 8080:8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/test"]
     env_file:
       - payment-data-services/db.env
 #      - ./payment-data-services/db.env_file
   checkout-orchestrator:
+    depends_on:
+      payment-data-services:
+        condition: service_healthy
     container_name: checkout-orchestrator
+    networks:
+      checkout-suite-manual:
+        aliases:
+          - checkout-orchestrator
     build:
       context: ./checkout-orchestrator
       dockerfile: Dockerfile
     working_dir: /checkout-orchestrator
-    image: nhiremathir/checkout-orchestrator:v4
+    image: nhiremathir/checkout-orchestrator:v4_m1
     volumes:
       - crypt:/checkout-orchestrator/crypt
     ports:
       - 8081:8081
-    depends_on:
-      mysql-con:
-        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8081/test"]
+
+
+networks:
+  checkout-suite-manual:
+    name: checkout-suite-manual
+
 
 volumes:
   crypt:

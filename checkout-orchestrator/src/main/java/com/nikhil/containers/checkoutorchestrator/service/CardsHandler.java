@@ -33,11 +33,16 @@ public class CardsHandler {
     public List<Card> getCards(boolean newSet) {
         log.info("Request to get cards from downstream/backend STARTED");
 
-        ResponseEntity<List> getCardsResponse = getCardFromDownstream(newSet);
+        ResponseEntity<List> getCardsResponse = null;
+        if (newSet) {
+            getCardsResponse = getCardsFromPublicApi();
+        } else {
+            getCardsResponse = getCardFromDownstream(newSet);
+        }
 
         List<Card> cards = getCardsResponse.getBody();
 
-        saveToCrypt(cards);
+        //saveToCrypt(cards);
 
         log.info("Request to get cards from downstream/backend COMPLETE");
         return cards;
