@@ -50,11 +50,11 @@ public class CardsApi {
     @GetMapping(value = "/cards")
     @ResponseBody
     public ResponseEntity<List<Card>> getCards() {
-        log.trace("GET CARDS api STARTED");
+        log.info("GET CARDS api STARTED");
 
         List<Card> cards = cardsHandler.getCardsFromRepository();
 
-        log.trace("GET CARDS api COMPLETED");
+        log.info("GET CARDS api COMPLETED");
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(cards);
@@ -64,11 +64,11 @@ public class CardsApi {
     @GetMapping(value = "/cards/new")
     @ResponseBody
     public ResponseEntity<List<Card>> getNewCards() {
-        log.trace("GET CARDS api STARTED");
+        log.info("GET NEW CARDS api STARTED");
 
         List<Card> cards = cardsHandler.getCards();
 
-        log.trace("GET CARDS api COMPLETED");
+        log.info("GET NEW CARDS api COMPLETED");
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(cards);

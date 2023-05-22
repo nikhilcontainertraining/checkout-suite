@@ -16,7 +16,7 @@ services:
       context: ./payment-data-services
       dockerfile: Dockerfile
     working_dir: /payment-data-services
-    image: nhiremathir/payment-data-services:v3
+    image: nhiremathir/payment-data-services:v4
     deploy:
       restart_policy:
         max_attempts: 3
@@ -24,7 +24,8 @@ services:
     ports:
       - 8080:8080
     env_file:
-      - ./payment-data-services/db.env
+      - payment-data-services/db.env
+#      - ./payment-data-services/db.env_file
   checkout-orchestrator:
     build:
       context: ./checkout-orchestrator

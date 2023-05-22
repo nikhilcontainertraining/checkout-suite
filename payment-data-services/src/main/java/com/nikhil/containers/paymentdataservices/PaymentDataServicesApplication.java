@@ -29,7 +29,7 @@ public class PaymentDataServicesApplication {
 	public static String userName = "Default Server";
 
 	public static void main(String[] args) {
-		log.trace("starting Payment Data Services Application");
+		log.info("starting Payment Data Services Application");
 		String unEnv = System.getenv("user_name");
 		userName = unEnv == null ? userName : unEnv;
 		try {
@@ -47,7 +47,7 @@ public class PaymentDataServicesApplication {
 		}
 		SpringApplication.run(PaymentDataServicesApplication.class, args);
 
-		log.trace("terminating Payment Data Services Application");
+		log.info("terminating Payment Data Services Application");
 	}
 
 }
