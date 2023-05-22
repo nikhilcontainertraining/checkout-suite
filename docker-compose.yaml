@@ -30,8 +30,13 @@ services:
       context: ./checkout-orchestrator
       dockerfile: Dockerfile
     working_dir: /checkout-orchestrator
-    image: nhiremathir/checkout-orchestrator:v3
+    image: nhiremathir/checkout-orchestrator:v4
+    volumes:
+      - crypt:/checkout-orchestrator/crypt
     ports:
       - 8081:8081
     depends_on:
       - payment-data-services
+
+volumes:
+  crypt:

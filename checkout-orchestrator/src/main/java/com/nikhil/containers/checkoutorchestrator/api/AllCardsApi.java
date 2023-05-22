@@ -4,6 +4,7 @@ import com.nikhil.containers.checkoutorchestrator.model.Card;
 import com.nikhil.containers.checkoutorchestrator.service.CardsHandler;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -48,6 +49,13 @@ public class AllCardsApi {
     @GetMapping(value = "/card/credit/new")
     public ResponseEntity<List<Card>> getNewCards() {
         return ResponseEntity.ok(cardsHandler.getCards(true));
+    }
+
+    @GetMapping(value = "/card/credit/file")
+    public ResponseEntity<InputStreamResource> getCardsOnFile() {
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(new InputStreamResource(cardsHandler.getCardsOnFile()));
     }
 
 }
