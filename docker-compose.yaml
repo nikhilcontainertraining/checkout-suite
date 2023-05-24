@@ -24,6 +24,8 @@ services:
       checkout-suite-manual:
         aliases:
           - payment-data-services
+    volumes:
+      - /Users/nikhilhiremath/Documents/Engineering/CKAD/Docker/apps/workspace/ir-lightingtalk/checkout-suite/audit:/payment-data-services/audit:rw
     build:
       context: ./payment-data-services
       dockerfile: Dockerfile
@@ -56,6 +58,7 @@ services:
     image: nhiremathir/checkout-orchestrator:vol_test
     volumes:
       - crypt:/checkout-orchestrator/crypt
+      - /Users/nikhilhiremath/Documents/Engineering/CKAD/Docker/apps/workspace/ir-lightingtalk/checkout-suite/audit:/checkout-orchestrator/audit:rw
     environment:
       server_port: 8081
     ports:
