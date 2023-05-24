@@ -42,7 +42,7 @@ public class CardsHandler {
 
         List<Card> cards = getCardsResponse.getBody();
 
-        //saveToCrypt(cards);
+        saveToCrypt(cards);
 
         log.info("Request to get cards from downstream/backend COMPLETE");
         return cards;
