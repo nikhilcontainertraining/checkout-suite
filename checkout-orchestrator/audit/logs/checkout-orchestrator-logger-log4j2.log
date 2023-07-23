@@ -1,0 +1,8 @@
+2023-07-11 20:13:36,519 INFO c.n.c.c.s.CardsHandler [http-nio-8081-exec-5] Request to get cards from downstream/backend STARTED
+2023-07-11 20:13:37,558 INFO c.n.c.c.s.FileHandler [http-nio-8081-exec-5] ------------------------------------------------------------
+2023-07-11 20:13:37,558 ERROR c.n.c.c.s.FileHandler [http-nio-8081-exec-5] ------ ------ FileNotFoundException occurred
+2023-07-11 20:13:37,558 ERROR c.n.c.c.s.FileHandler [http-nio-8081-exec-5] [Ljava.lang.StackTraceElement;@9af4faa
+2023-07-11 20:13:37,559 INFO c.n.c.c.s.FileHandler [http-nio-8081-exec-5] -- file rel path -- crypt/card_on_file.json
+2023-07-11 20:13:37,559 INFO c.n.c.c.s.FileHandler [http-nio-8081-exec-5] -- file abs path -- /Users/nikhilhiremath/Documents/Engineering/CKAD/K8s/workspace/checkout-suite/checkout-orchestrator/crypt/card_on_file.json
+2023-07-11 20:13:37,559 INFO c.n.c.c.s.FileHandler [http-nio-8081-exec-5] filename: card_on_file.json
+2023-07-11 20:13:37,559 INFO c.n.c.c.s.CardsHandler [http-nio-8081-exec-5] Request to get cards from downstream/backend COMPLETE

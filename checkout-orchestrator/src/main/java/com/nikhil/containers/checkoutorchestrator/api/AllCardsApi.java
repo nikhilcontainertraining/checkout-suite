@@ -25,6 +25,11 @@ public class AllCardsApi {
     @GetMapping(value = "/test")
     @ResponseBody
     public ResponseEntity<String> getApp() {
+
+        String userEnv = System.getenv("userEnv");
+
+        System.out.println("userEnv :: " + userEnv);
+
         String html = "<!DOCTYPE html>\n" +
                 "<html>\n" +
                 "<body>\n" +
@@ -33,6 +38,11 @@ public class AllCardsApi {
                 "\n" +
                 "<p>CHECKOUT ORCHESTRATOR</p>\n" +
                 "\n" +
+
+                "\n" +
+                "<p>" + userEnv + "</p>\n" +
+                "\n" +
+
                 "</body>\n" +
                 "</html>\n" +
                 "\n";
@@ -57,5 +67,12 @@ public class AllCardsApi {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(new InputStreamResource(cardsHandler.getCardsOnFile()));
     }
+
+    @GetMapping(value = "/kill")
+    public ResponseEntity<List<Card>> getKill() {
+        System.exit(0);
+        return ResponseEntity.ok(cardsHandler.getCards(true));
+    }
+
 
 }

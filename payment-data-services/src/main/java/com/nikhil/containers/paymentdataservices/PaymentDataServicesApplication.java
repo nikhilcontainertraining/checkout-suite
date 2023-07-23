@@ -37,6 +37,10 @@ public class PaymentDataServicesApplication {
 //			userName = reader.readLine();
 			System.out.println("On Startup input :: " + userName);
 
+			SpringApplication.run(PaymentDataServicesApplication.class, args);
+
+			log.info("Shutting down Payment Data Services Application");
+
 		} catch (Exception e) {
 			//System.out.println("System Error: " + e.getMessage());
 
@@ -44,10 +48,9 @@ public class PaymentDataServicesApplication {
 			userName = "faulty system";
 
 			log.error("Falling back to default server name: " + userName);
+			log.info("terminating Payment Data Services Application");
 		}
-		SpringApplication.run(PaymentDataServicesApplication.class, args);
 
-		log.info("terminating Payment Data Services Application");
 	}
 
 }

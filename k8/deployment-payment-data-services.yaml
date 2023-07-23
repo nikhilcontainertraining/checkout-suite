@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-data-services-declarative-deployment
+  labels:
+    group: fsco
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payment-data-services
+      tier: downstream
+  template:
+    metadata:
+      labels:
+        app: payment-data-services
+        tier: downstream
+    spec:
+      containers:
+        - name: payment-data-services-container
+          image: nhiremathir/payment-data-services:vol_test
+          ports:
+            - containerPort: 8080
+          env:
+            - name: server_port
+              value: "8080"
+            - name: user_name
+              value: "Local(Payment Data Service deployment YAML)"
+            - name: MYSQL_USER
+              value: "root"
+            - name: MYSQL_PASSWORD
+              value: "Mig5@mig5"
+            - name: MYSQL_URL
+              value: "localhost"
+

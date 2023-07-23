@@ -81,11 +81,19 @@ public class CardsHandler {
 
 
     private ResponseEntity<List> getCardFromDownstream(boolean newSet) {
+
+        //String paymentDataDownstreamHost = System.getenv("payment-data-service-host");
+        String paymentDataDownstreamHost = System.getenv("DOWNSTREAM_COMPONENTS_DECLARATIVE_SERVICE_SERVICE_HOST");
+
+        String urlNewSet = "http://" + paymentDataDownstreamHost + ":8080/cards/new";
+        String urlFromDb = "http://" + paymentDataDownstreamHost + ":8080/cards";
+
+        String url = newSet ? urlNewSet : urlFromDb;
+        log.info("-------------------------------------->>>>> downstream/backend URL: " + url);
+
         ResponseEntity<List> getCardsResponse = null;
         try {
-            getCardsResponse = newSet
-                    ? restTemplate.getForEntity("http://payment-data-services:8080/cards/new", List.class)
-                    : restTemplate.getForEntity("http://payment-data-services:8080/cards", List.class);
+            getCardsResponse = restTemplate.getForEntity(url, List.class);
         } catch (Exception e) {
             log.error("ERROR Occurred : Request to get cards from downstream/backend: " + e.getMessage());
             log.error(e.getStackTrace());

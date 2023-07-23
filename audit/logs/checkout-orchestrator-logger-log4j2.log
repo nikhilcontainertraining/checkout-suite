@@ -1,14 +1,19 @@
-2023-05-24 15:31:34,141 INFO o.s.b.StartupInfoLogger [main] Starting CheckoutOrchestratorApplication using Java 11.0.16 on 3d1d15b945f6 with PID 1 (/checkout-orchestrator/lib/checkout-orchestrator-0.0.1-SNAPSHOT.jar started by root in /checkout-orchestrator)
-2023-05-24 15:31:34,150 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-05-24 15:31:34,929 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8081 (http)
-2023-05-24 15:31:34,946 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8081"]
-2023-05-24 15:31:34,948 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
-2023-05-24 15:31:34,949 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.70]
-2023-05-24 15:31:35,012 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2023-05-24 15:31:35,014 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 815 ms
-2023-05-24 15:31:35,309 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8081"]
-2023-05-24 15:31:35,327 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8081 (http) with context path ''
-2023-05-24 15:31:35,338 INFO o.s.b.StartupInfoLogger [main] Started CheckoutOrchestratorApplication in 1.633 seconds (JVM running for 2.316)
-2023-05-24 15:32:03,147 INFO o.a.j.l.DirectJDKLog [http-nio-8081-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-05-24 15:32:03,149 INFO o.s.w.s.FrameworkServlet [http-nio-8081-exec-1] Initializing Servlet 'dispatcherServlet'
-2023-05-24 15:32:03,151 INFO o.s.w.s.FrameworkServlet [http-nio-8081-exec-1] Completed initialization in 1 ms
+2023-05-25 22:34:53,780 INFO c.n.c.c.s.FileHandler [http-nio-8081-exec-9] ------------------------------------------------------------
+2023-05-25 22:34:53,793 INFO c.n.c.c.s.FileHandler [http-nio-8081-exec-9] -- file rel path -- crypt/card_on_file.json
+2023-05-25 22:34:53,794 INFO c.n.c.c.s.FileHandler [http-nio-8081-exec-9] -- file abs path -- /checkout-orchestrator/crypt/card_on_file.json
+2023-05-25 22:34:53,795 INFO c.n.c.c.s.FileHandler [http-nio-8081-exec-9] filename: card_on_file.json
+2023-05-25 22:34:53,797 INFO c.n.c.c.s.CardsHandler [http-nio-8081-exec-9] Request to get cards from downstream/backend COMPLETE
+2023-05-25 22:34:55,689 INFO c.n.c.c.s.CardsHandler [http-nio-8081-exec-10] Request to get cards from downstream/backend STARTED
+2023-05-25 22:34:55,707 INFO c.n.c.c.s.FileHandler [http-nio-8081-exec-10] ------------------------------------------------------------
+2023-05-25 22:34:55,708 INFO c.n.c.c.s.FileHandler [http-nio-8081-exec-10] -- file rel path -- crypt/card_on_file.json
+2023-05-25 22:34:55,710 INFO c.n.c.c.s.FileHandler [http-nio-8081-exec-10] -- file abs path -- /checkout-orchestrator/crypt/card_on_file.json
+2023-05-25 22:34:55,711 INFO c.n.c.c.s.FileHandler [http-nio-8081-exec-10] filename: card_on_file.json
+2023-05-25 22:34:55,712 INFO c.n.c.c.s.CardsHandler [http-nio-8081-exec-10] Request to get cards from downstream/backend COMPLETE
+2023-05-25 22:35:00,572 INFO c.n.c.c.s.CardsHandler [http-nio-8081-exec-1] Request to get cards from downstream/backend STARTED
+2023-05-25 22:35:01,044 INFO c.n.c.c.s.FileHandler [http-nio-8081-exec-1] ------------------------------------------------------------
+2023-05-25 22:35:01,046 INFO c.n.c.c.s.FileHandler [http-nio-8081-exec-1] -- file rel path -- crypt/card_on_file.json
+2023-05-25 22:35:01,048 INFO c.n.c.c.s.FileHandler [http-nio-8081-exec-1] -- file abs path -- /checkout-orchestrator/crypt/card_on_file.json
+2023-05-25 22:35:01,049 INFO c.n.c.c.s.FileHandler [http-nio-8081-exec-1] filename: card_on_file.json
+2023-05-25 22:35:01,050 INFO c.n.c.c.s.CardsHandler [http-nio-8081-exec-1] Request to get cards from downstream/backend COMPLETE
+2023-05-25 22:35:03,476 INFO c.n.c.c.s.CardsHandler [http-nio-8081-exec-2] Request to get cards from FILE STARTED
+2023-05-25 22:35:03,478 INFO c.n.c.c.s.CardsHandler [http-nio-8081-exec-2] Request to get cards from FILE COMPLETE

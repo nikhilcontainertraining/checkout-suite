@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fsco-declarative-deployment
+  labels:
+    group: fsco
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fsco-v2
+      tier: orchestration
+  template:
+    metadata:
+      labels:
+        app: fsco-v2
+        tier: orchestration
+    spec:
+      volumes:
+#        - name: crypt-emptydir
+#          emptyDir: {}
+#        - name: crypt-hostpath
+#          hostPath:
+#            path: /checkout-orchestrator-hostpath
+#            type: DirectoryAndCreate
+        - name: crypt-pv-claim
+          persistentVolumeClaim:
+            claimName: host-pv-claim
+      containers:
+        - name: fsco-v2-container
+          image: nhiremathir/checkout-orchestrator:kill
+          imagePullPolicy: "Always"
+          env:
+            - name: payment-data-service-host
+              value: localhost
+            - name: userEnv
+              valueFrom:
+                configMapKeyRef:
+                  name: config-map-env
+                  key: host-environment
+
+#              value: Local(deployment YAML)
+
+          volumeMounts:
+            - mountPath: /checkout-orchestrator/crypt
+              name: crypt-pv-claim
+          livenessProbe:
+            httpGet:
+              port: 8081
+              path: /test
+            periodSeconds: 30
+            initialDelaySeconds: 5
+          ports:
+            - containerPort: 8081

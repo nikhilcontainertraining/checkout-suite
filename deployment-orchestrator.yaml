@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: checkout-orchestrator-declarative-deployment
+  labels:
+    group: fsco
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: checkout-orchestrator
+      tier: orchestration
+  template:
+    metadata:
+      labels:
+        app: checkout-orchestrator
+        tier: orchestration
+    spec:
+      volumes:
+#        - name: crypt-emptydir
+#          emptyDir: {}
+#        - name: crypt-hostpath
+#          hostPath:
+#            path: /checkout-orchestrator-hostpath
+#            type: DirectoryAndCreate
+        - name: crypt-pv-claim
+          persistentVolumeClaim:
+            claimName: host-pv-claim
+      containers:
+        - name: checkout-orchestrator-container
+          image: nhiremathir/checkout-orchestrator:network-v2
+          imagePullPolicy: "Always"
+          env:
+            - name: payment-data-service-host
+              value: test-nikhil-host
+            - name: userEnv
+              valueFrom:
+                configMapKeyRef:
+                  name: config-map-env
+                  key: host-environment
+
+#              value: Local(deployment YAML)
+
+          volumeMounts:
+            - mountPath: /checkout-orchestrator/crypt
+              name: crypt-pv-claim
+          livenessProbe:
+            httpGet:
+              port: 8081
+              path: /test
+            periodSeconds: 30
+            initialDelaySeconds: 5
+          ports:
+            - containerPort: 8081
