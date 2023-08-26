@@ -25,6 +25,6 @@ spec:
             - name: MYSQL_ROOT_USER
               value: root
             - name: MYSQL_ROOT_PASSWORD
-              value: Mig5@mig5
+              value: mysqlpassword
             - name: MYSQL_DATABASE
               value: card_repository

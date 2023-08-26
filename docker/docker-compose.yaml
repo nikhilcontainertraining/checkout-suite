@@ -7,7 +7,7 @@ services:
     tty: true
     environment:
       MYSQL_ROOT_USER: root
-      MYSQL_ROOT_PASSWORD: Mig5@mig5
+      MYSQL_ROOT_PASSWORD: mysqlpassword
       MYSQL_DATABASE: card_repository
     healthcheck:
       test: ["CMD","mysqladmin","ping","-h","localhost"]
@@ -27,8 +27,8 @@ services:
     volumes:
       - /Users/nikhilhiremath/Documents/Engineering/CKAD/Docker/apps/workspace/ir-lightingtalk/checkout-suite/audit:/payment-data-services/audit:rw
     build:
-      context: ./payment-data-services
-      dockerfile: Dockerfile
+      context: ../payment-data-services
+      dockerfile: ../payment-data-services/Dockerfile
     working_dir: /payment-data-services
     image: nhiremathir/payment-data-services:vol_test
     deploy:
@@ -40,8 +40,8 @@ services:
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/test"]
     env_file:
-      - payment-data-services/db.env
-      - payment-data-services/application.env
+      - ../payment-data-services/db.env
+      - ../payment-data-services/application.env
   checkout-orchestrator:
     depends_on:
       payment-data-services:
@@ -52,8 +52,8 @@ services:
         aliases:
           - checkout-orchestrator
     build:
-      context: ./checkout-orchestrator
-      dockerfile: Dockerfile
+      context: ../checkout-orchestrator
+      dockerfile: ../checkout-orchestrator/Dockerfile
     working_dir: /checkout-orchestrator
     image: nhiremathir/checkout-orchestrator:vol_test
     volumes:

@@ -29,7 +29,7 @@ spec:
             - name: MYSQL_USER
               value: "root"
             - name: MYSQL_PASSWORD
-              value: "Mig5@mig5"
+              value: "mysqlpassword"
             - name: MYSQL_URL
               value: "localhost"
 

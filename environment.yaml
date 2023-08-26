@@ -4,3 +4,4 @@ metadata:
   name: config-map-env
 data:
   host-environment: 'Local(Config Maps)'
+  MYSQL_ROOT_PASSWORD: mysqlpassword
